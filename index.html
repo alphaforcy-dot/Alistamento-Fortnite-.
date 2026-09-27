@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaForcy - Alistamento Fortnite</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b071a;
+            background-image: radial-gradient(#29184d 1px, transparent 1px);
+            background-size: 16px 16px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: rgba(18, 12, 38, 0.95);
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 38%;
+            padding: 25px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(21, 13, 44, 0.9) 0%, rgba(10, 6, 23, 0.98) 100%);
+            border-right: 2px solid #5b21b6;
+        }
+
+        .logo-box {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-box svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8));
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px #000;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #c084fc;
+            font-weight: 800;
+            margin-top: 4px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .xp-container {
+            width: 85%;
+            background: rgba(28, 18, 59, 0.9);
+            border: 1px solid #6d28d9;
+            padding: 3px 6px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .xp-badge {
+            background: #4c1d95;
+            color: #c084fc;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 1px 5px;
+            border: 1px solid #a855f7;
+            border-radius: 2px;
+        }
+
+        .xp-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            width: 75%;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(236, 72, 153, 0.6);
+        }
+
+        .main-form {
+            width: 62%;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .header-bar {
+            background: rgba(46, 26, 92, 0.9);
+            border: 1px solid #6d28d9;
+            padding: 6px 14px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-bar h2 {
+            font-size: 15px;
+            color: #f3e8ff;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .section-box {
+            border: 1px solid #3b0764;
+            background: rgba(18, 12, 38, 0.85);
+            padding: 10px 12px;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 900;
+            color: #c084fc;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #d8b4fe;
+        }
+
+        input[type="text"], input[type="url"], select, textarea {
+            width: 100%;
+            background: rgba(10, 6, 23, 0.9);
+            border: 1px solid #a855f7;
+            border-radius: 3px;
+            padding: 5px 8px;
+            color: #ffffff;
+            font-size: 11px;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 40px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 2px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #e9d5ff;
+        }
+
+        .checkbox-item input {
+            accent-color: #a855f7;
+        }
+
+        .confirmation-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .check-options {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .check-options label {
+            color: #4ade80;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(180deg, #25D366 0%, #128C7E 100%);
+            color: #ffffff;
+            font-weight: 900;
+            border: 1px solid #25D366;
+            padding: 6px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar, .main-form {
+                width: 100%;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 2px solid #5b21b6;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <!-- ÍCONE FORTNITE / BATTLE ROYALE -->
+        <div class="logo-box">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Anel exterior brilhante -->
+                <circle cx="100" cy="100" r="90" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="8 4" opacity="0.7"/>
+                <circle cx="100" cy="100" r="82" fill="none" stroke="#5b21b6" stroke-width="3"/>
+
+                <!-- V / Fortnite Victory Royale Shield -->
+                <polygon points="100,20 155,45 155,115 100,175 45,115 45,45" fill="#170c38" stroke="#a855f7" stroke-width="3"/>
+                <polygon points="100,30 145,52 145,110 100,160 55,110 55,52" fill="#261254" stroke="#ec4899" stroke-width="2"/>
+
+                <!-- Letra F / Ícone Temático -->
+                <path d="M 80 55 L 125 55 L 125 70 L 98 70 L 98 88 L 120 88 L 120 103 L 98 103 L 98 135 L 80 135 Z" fill="#c084fc" stroke="#ffffff" stroke-width="1"/>
+                
+                <!-- Estrelas de Vitória -->
+                <polygon points="100,140 103,147 110,147 104,151 106,158 100,154 94,158 96,151 90,147 97,147" fill="#ffd700"/>
+            </svg>
+        </div>
+        
+        <div class="title">ALPHA FORCY</div>
+        <div class="subtitle">RECRUTAMENTO DE ELITE<br>FORTNITE</div>
+        <div class="xp-container">
+            <span class="xp-badge">XP</span>
+            <div class="xp-bar"></div>
+        </div>
+    </div>
+
+    <form class="main-form" id="whatsappForm">
+        <div class="header-bar">
+            <h2>Alistamento</h2>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">1. INFO DO JOGADOR</div>
+            <div class="grid-2">
+                <div class="field-group">
+                    <label>Nickname / Epic ID</label>
+                    <input type="text" id="nickname" required placeholder="Ex: APF_Mackenzie">
+                </div>
+                <div class="field-group">
+                    <label>Plataforma</label>
+                    <select id="plataforma" required>
+                        <option value="">Selecione...</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                        <option value="Mobile / Cloud">Mobile / Cloud</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Rank Atual (Ranqueada)</label>
+                    <select id="rank" required>
+                        <option value="">Selecione...</option>
+                        <option value="Unreal">Unreal</option>
+                        <option value="Surge (Champion)">Campeão (Champion)</option>
+                        <option value="Elite">Elite</option>
+                        <option value="Diamante">Diamante</option>
+                        <option value="Platina / Ouro">Platina / Ouro</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>K/D Ratio ou PR (Power Ranking)</label>
+                    <input type="text" id="kd_ratio" required placeholder="Ex: 2.5 K/D ou 500 PR">
+                </div>
+            </div>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">2. ESTILO DE JOGO</div>
+            <div class="field-group">
+                <label>Função Principal</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox" id="funcao_fragger" value="Fragger"> Fragger</label>
+                    <label class="checkbox-item"><input type="checkbox" id="funcao_igl" value="IGL"> IGL (Capitão)</label>
+                    <label class="checkbox-item"><input type="checkbox" id="funcao_support" value="Support"> Support</label>
+                    <label class="checkbox-item"><input type="checkbox" id="funcao_anchor" value="Anchor"> Anchor / Tarp</label>
+                </div>
+            </div>
+            <div class="field-group" style="margin-top: 6px;">
+                <label>Modalidade Preferida</label>
+                <select id="modo_preferido" required>
+                    <option value="Battle Royale (Com Construção)">Battle Royale (Com Construção)</option>
+                    <option value="Zero Construção (Zero Build)">Zero Construção (Zero Build)</option>
+                    <option value="Ambos os Modos">Ambos os Modos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">3. DISPONIBILIDADE E PERIFÉRICOS</div>
+            <div class="field-group">
+                <label>Horários de Treino / Campeonatos</label>
+                <input type="text" id="horario_treino" required placeholder="Ex: 18h às 22h">
+            </div>
+            <div class="grid-2" style="margin-top: 6px;">
+                <div class="field-group">
+                    <label>Input (Controle / Teclado)</label>
+                    <select id="input_device" required>
+                        <option value="">Selecione...</option>
+                        <option value="Teclado e Mouse (K&M)">Teclado e Mouse</option>
+                        <option value="Controle (Controller)">Controle</option>
+                        <option value="Toque (Touch)">Toque / Mobile</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Velocidade da Internet / Ping</label>
+                    <input type="text" id="velocidade_internet" required placeholder="Ex: 300 Mega / Ping 20ms">
+                </div>
+            </div>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">4. MOTIVAÇÃO E HIGHLIGHTS</div>
+            <div class="field-group">
+                <label>Por que quer entrar na Alpha Forcy?</label>
+                <textarea id="motivacao" placeholder="Escreva o motivo de querer entrar no time de Fortnite..."></textarea>
+            </div>
+            <div class="field-group" style="margin-top: 6px;">
+                <label>Link de Clips/Highlights (YouTube, TikTok, Tracker)</label>
+                <input type="url" id="link_clips" placeholder="https://fortnitetracker.com/... ou YouTube/TikTok">
+            </div>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">5. CONFIRMAÇÃO</div>
+            <div class="confirmation-group">
+                <div class="check-options">
+                    <label><input type="checkbox" id="mic_ligado" checked required> Microfone ligado / Discord</label>
+                    <label><input type="checkbox" id="regras_lidas" checked required> Regras lidas</label>
+                </div>
+                <button type="submit" class="btn-submit">CONFIRMAR VIA WHATSAPP</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // NÚMERO CONFIGURADO: (34) 99910-2957
+        const numeroWhatsApp = "5534999102957"; 
+
+        // Coletando as funções selecionadas
+        let funcoes = [];
+        if(document.getElementById('funcao_fragger').checked) funcoes.push("Fragger");
+        if(document.getElementById('funcao_igl').checked) funcoes.push("IGL");
+        if(document.getElementById('funcao_support').checked) funcoes.push("Support");
+        if(document.getElementById('funcao_anchor').checked) funcoes.push("Anchor");
+
+        // Formatando a mensagem do WhatsApp
+        let mensagem = `*NOVO ALISTAMENTO FORTNITE - ALPHAFORCY*\n\n`;
+        mensagem += `*1. INFO DO JOGADOR*\n`;
+        mensagem += `• Epic ID / Nick: ${document.getElementById('nickname').value}\n`;
+        mensagem += `• Plataforma: ${document.getElementById('plataforma').value}\n`;
+        mensagem += `• Rank: ${document.getElementById('rank').value}\n`;
+        mensagem += `• K/D ou PR: ${document.getElementById('kd_ratio').value}\n\n`;
+
+        mensagem += `*2. ESTILO DE JOGO*\n`;
+        mensagem += `• Funções: ${funcoes.join(', ') || 'Nenhuma selecionada'}\n`;
+        mensagem += `• Modalidade: ${document.getElementById('modo_preferido').value}\n\n`;
+
+        mensagem += `*3. DISPONIBILIDADE E PERIFÉRICOS*\n`;
+        mensagem += `• Horário: ${document.getElementById('horario_treino').value}\n`;
+        mensagem += `• Input: ${document.getElementById('input_device').value}\n`;
+        mensagem += `• Internet/Ping: ${document.getElementById('velocidade_internet').value}\n\n`;
+
+        mensagem += `*4. MOTIVAÇÃO E HIGHLIGHTS*\n`;
+        mensagem += `• Motivação: ${document.getElementById('motivacao').value || 'Não preenchido'}\n`;
+        mensagem += `• Clips/Tracker: ${document.getElementById('link_clips').value || 'Não informado'}\n\n`;
+
+        mensagem += `• Mic / Discord: Sim\n`;
+        mensagem += `• Regras lidas: Sim`;
+
+        // Abrir diretamente no WhatsApp
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+        window.open(url, '_blank');
+    });
+</script>
+
+</body>
+</html>
